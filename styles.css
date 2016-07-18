@@ -1,7 +1,26 @@
 img {
-    width: 400px
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
 }
+
 body {
     text-align: center;
     font-family: "Trebuchet MS";
+    background-color: #E4F316;
+     background: -webkit-linear-gradient( #00FF0D,#3E4BFA );
+     background-repeat: no-repeat;
+     background-size:cover;
+}
+
+h1 {
+        color: #F32756; 
+} 
+
+p {
+    color: #F31616;
+    font-size: 150%
+}
+html, body { 
+    min-height: 100%;
 }
