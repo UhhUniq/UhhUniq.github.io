@@ -3,8 +3,18 @@
     height: 300px;
     border-radius: 150px;
     border-color: black;
-    background-color: red;
-    font-size: 50px;
-    color:white;
+    background-image: url(http://rapnrolls.com/wp-content/uploads/2014/02/1653717_507551232697049_940653862_n-300x300.jpg);
+    font-size: 30px;
+    padding-top: 100px;
+    font-family: Fantasy;
+    color: #2A0A0A;
     
 }
+body {
+    color: black;
+    background-color: yellow;
+    background-image: url(http://www.fnordware.com/superpng/pnggradHDrgba.png);
+    text-align: center
+    
+}
+
