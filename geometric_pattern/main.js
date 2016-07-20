@@ -91,6 +91,8 @@ function mouseClicked() {
     sprite=createSprite(700, 200, 50, 50);
     sprite.addImage(img);
     
+    var audio = new Audio("fh.mp3");
+    audio.play();
     setTimeout(function() {
         sprite.remove(); 
         img.remove();
