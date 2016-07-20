@@ -53,19 +53,19 @@ function draw() {
         }
         while (x <= width / 3) {
             fill(color(0, 0, 255));
-            stroke(color(0, 0, 0));
+            stroke(color(0, 0, 255));
             ellipse(x, y, circleDiameter, circleDiameter);
             x = x + circleDiameter;
         }
         while (x > width / 3 && x <= width * 2 / 3) {
             fill(color(255, 255, 255));
-            stroke(color(0, 0, 0));
+            stroke(color(255, 255, 255));
             ellipse(x, y, circleDiameter, circleDiameter);
             x = x + circleDiameter;
         }
         while (x > width * 2 / 3 && x <= width) {
             fill(color(255, 0, 0));
-            stroke(color(0, 0, 0));
+            stroke(color(255, 0, 0));
             ellipse(x, y, circleDiameter, circleDiameter);
             x = x + circleDiameter;
         }
