@@ -1,4 +1,4 @@
-var NUM_CIRCLES = 12;
+var NUM_CIRCLES = 40;
 
 var circleDiameter;
 var circleRadius;
@@ -6,15 +6,17 @@ var circleRadius;
 var rVal;
 var gVal;
 var bVal;
+var img;
+var sprite;
 
 function setup() {
-    createCanvas(480, 600);
+    createCanvas(1350, 620);
+    img = loadImage("hollande+72.png");
+    frameRate(5000);
     
-    frameRate(5)
-    
-    circleDiameter = width/NUM_CIRCLES;
-    circleRadius = circleDiameter/2;
-    
+    circleDiameter = width / NUM_CIRCLES;
+    circleRadius = circleDiameter / 2;
+
     rVal = 225;
     gVal = 0;
     bVal = 0;
@@ -35,33 +37,47 @@ function setup() {
 //     ellipse(12*circleDiameter,height/2,circleDiameter,circleDiameter);
 // }
 function draw() {
-    
+
     var isShifted = false
-    
+
     var y = height;
-    while(y >= 0) {
-    
-     var x;
-     
-     if (isShifted) {
-         x = circleRadius;
-     } else {
-         x = 0 
-     }
-     while (x <=width) {
-         fill(color(rVal,gVal , bVal));
-        stroke(color(rVal, gVal, bVal));
-        ellipse(x, y, circleDiameter, circleDiameter);
-        x = x + circleDiameter;
+    while (y >= 0) {
+
+        var x;
+
+        if (isShifted) {
+            x = circleRadius;
+        }
+        else {
+            x = 0;
+        }
+        while (x <= width / 3) {
+            fill(color(0, 0, 255));
+            stroke(color(0, 0, 0));
+            ellipse(x, y, circleDiameter, circleDiameter);
+            x = x + circleDiameter;
+        }
+        while (x > width / 3 && x <= width * 2 / 3) {
+            fill(color(255, 255, 255));
+            stroke(color(0, 0, 0));
+            ellipse(x, y, circleDiameter, circleDiameter);
+            x = x + circleDiameter;
+        }
+        while (x > width * 2 / 3 && x <= width) {
+            fill(color(255, 0, 0));
+            stroke(color(0, 0, 0));
+            ellipse(x, y, circleDiameter, circleDiameter);
+            x = x + circleDiameter;
+        }
+        
+        y = y - circleRadius;
+        isShifted = !isShifted;
+
+        // rVal = (rVal + 254) % 256;
+        // gVal = (gVal + 7) % 256;
+        // bVal = (bVal +3) %256;
     }
-    y = y - circleRadius;
-    
-    isShifted = !isShifted;
-    
-    rVal = (rVal + 254) % 256;
-    gVal = (gVal + 7) % 256;
-    bVal = (bVal +3) %256;
-    }
+    drawSprites();
 }
 
 function keyPressed() {
@@ -69,4 +85,15 @@ function keyPressed() {
         saveCanvas('geometricPattern', 'png')
     }
     return false;
+}
+
+function mouseClicked() {
+    sprite=createSprite(700, 200, 50, 50);
+    sprite.addImage(img);
+    
+    setTimeout(function() {
+        sprite.remove(); 
+        img.remove();
+        console.log("hi") 
+        }, 2000);
 }
