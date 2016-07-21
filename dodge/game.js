@@ -54,18 +54,18 @@ function draw() {
 
 
         if (keyDown(RIGHT_ARROW) && player.position.x < (width - 25)) {
-            player.position.x = player.position.x + 4;
+            player.position.x = player.position.x + 6;
         }
 
         if (keyDown(LEFT_ARROW) && player.position.x > 25) {
-            player.position.x = player.position.x - 4;
+            player.position.x = player.position.x - 6;
         }
         if (keyDown(DOWN_ARROW) && player.position.y < (height - 25)) {
-            player.position.y = player.position.y + 2;
+            player.position.y = player.position.y + 5;
         }
 
         if (keyDown(UP_ARROW) && player.position.y > 25) {
-            player.position.y = player.position.y - 2;
+            player.position.y = player.position.y - 5;
         }
 
         enemy.position.y = enemy.position.y + 7;
@@ -128,7 +128,7 @@ function draw() {
          console.log(score);
     fill(255, 0, 0);
     textFont(specialfont);
-    textSize(30)
+    textSize(40)
     text("Score:" + score, 0, 30);
 
 
@@ -143,8 +143,8 @@ function gameOver() {
     fill("#FF0000");
     textSize(50);
     textFont(specialfont);
-    text("Game Over!", width / 2, height / 2);
-    text("Click anywhere to try again", width / 2, 3 * height / 4);
+    text("GAME OVER !", width / 2, height / 2);
+    text("CLICK FOR TRY AGAIN!", width / 2, 3 * height / 4);
     textFont(specialfont);
     textSize(30)
     text("Score:" + score, 70, 30);
