@@ -148,13 +148,13 @@ function gameOver() {
     textFont(specialfont);
     textSize(30)
     text("Score:" + score, 70, 30);
-    score=0;
 
 }
 
 function mouseClicked() {
     if (isGameOver) {
-        isGameOver = false;
+        isGameOver = false; 
+        score = 0;
         player.position.x = width / 2;
         player.position.y = height - playerImage.height / 2;
         enemy.position.x = Math.floor((Math.random() * 1300));
