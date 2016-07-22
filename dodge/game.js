@@ -13,6 +13,19 @@ var background;
 var backgroundImage;
 var score;
 var highscore;
+var gravity;
+var enemy2Image;
+var enemy3Image;
+var enemy4Image;
+var isGameWin;
+var playing = false;
+var playin = false;
+var MLGSONGCUT= new Audio("360noscoop.mp3");
+var SNIPER= new Audio("MW2.mp3")
+var illuminati;
+var doritos;
+var lunettes;
+var mlglogo;
 
 function setup() {
     createCanvas(1300, 600);
@@ -26,19 +39,24 @@ function setup() {
     enemy5 = createSprite(Math.floor((Math.random() * 1300)), height - 25, 50, 50);
     enemy6 = createSprite(Math.floor((Math.random() * 1300)), height - 25, 50, 50);
     enemy.addImage(enemyImage);
-    enemy2.addImage(enemyImage);
-    enemy3.addImage(enemyImage);
-    enemy4.addImage(enemyImage);
+    enemy2.addImage(enemy2Image);
+    enemy3.addImage(enemy3Image);
+    enemy4.addImage(enemy4Image);
     enemy5.addImage(enemyImage);
     enemy6.addImage(enemyImage);
     score = 0;
     highscore=score;
+    gravity=0.8;
 }
 
 function draw() {
     background(backgroundImage);
     if (isGameOver) {
         gameOver();
+    }
+    else if(isGameWin){
+        makemlg();
+        
     }
     else {
         if (enemy.overlap(player))
@@ -62,14 +80,16 @@ function draw() {
         if (keyDown(LEFT_ARROW) && player.position.x > 25) {
             player.position.x = player.position.x - 10;
         }
-        if (keyDown(DOWN_ARROW) && player.position.y < (height - 25)) {
-            player.position.y = player.position.y + 10;
-        }
+        // if (keyDown(DOWN_ARROW) && player.position.y < (height - 25)) {
+        //     player.position.y = player.position.y + 10;
+        // }
 
-        if (keyDown(UP_ARROW) && player.position.y > 25) {
-            player.position.y = player.position.y - 10;
-        }
-
+        // if (keyDown(UP_ARROW) && player.position.y > 25) {
+        //     player.position.y = player.position.y - 10;
+        // }
+        
+        jump();
+        
         enemy.position.y = enemy.position.y + 7;
         enemy2.position.y = enemy2.position.y + 6;
         enemy3.position.y = enemy3.position.y + 9;
@@ -81,31 +101,49 @@ function draw() {
 
         if (enemy.position.y > height) {
             score = score + 1;
+            if (score==10){
+                isGameWin=true;
+            }
             enemy.position.y = 0,
                 enemy.position.x = Math.floor((Math.random() * 1300));
         }
         if (enemy2.position.y > height) {
             score = score + 1;
+             if (score==10){
+                isGameWin=true;
+            }
             enemy2.position.y = 0,
                 enemy2.position.x = Math.floor((Math.random() * 1300));
         }
         if (enemy3.position.y > height) {
             score = score + 1;
+             if (score==10){
+               isGameWin=true;
+            }
             enemy3.position.y = 0,
                 enemy3.position.x = Math.floor((Math.random() * 1300));
         }
         if (enemy4.position.y > height) {
             score = score + 1;
+              if (score==10){
+                isGameWin=true;
+            }
             enemy4.position.y = 0,
                 enemy4.position.x = Math.floor((Math.random() * 1300));
         }
         if (enemy5.position.y > height) {
             score = score + 1;
+             if (score==10){
+                isGameWin=true;
+            }
             enemy5.position.y = 0,
                 enemy5.position.x = Math.floor((Math.random() * 1300));
         }
         if (enemy6.position.y > height) {
             score = score + 1;
+             if (score==10){
+                isGameWin=true;
+            }
             enemy6.position.y = 0,
                 enemy6.position.x = Math.floor((Math.random() * 1300));
         }
@@ -195,8 +233,63 @@ function mouseClicked() {
 }
 
 function preload() {
-    playerImage = loadImage("PLAYER 2.png");
-    backgroundImage = loadImage("bkgd.png");
+    playerImage = loadImage("PLAYER3.png");
+    backgroundImage = loadImage("BACK2.png");
     specialfont = loadFont("font.ttf");
     enemyImage = loadImage("BOSS_02.png");
+    enemy2Image = loadImage("ENEMY2.png");
+    enemy3Image = loadImage("ENEMY3.png");
+    enemy4Image = loadImage("ENEMY4.png");
+    backgroundMLGImage = loadImage("BKGDMLG.jpg")
+    illuminatiImage = loadImage("ILLU.png")
+    doritosImage = loadImage("MLGDORITOS.png")
+    mlglogoImage = loadImage("MLGLOGO.png")
+    mlglunettes = loadImage("MLGLUNET.png")
 }
+
+function jump(){
+   if(keyIsDown(32)&&player.velocity.y===0){
+       player.velocity.y=-20;
+   }
+   if(player.velocity.y!=0){
+       player.velocity.y=player.velocity.y+gravity;
+   }
+   if(player.position.y>height-(player.height/2)){
+       player.velocity.y=0;
+       player.position.y=height-(player.height/2);
+   }
+}
+function makemlg() {
+    background(backgroundMLGImage);
+    textAlign(CENTER);
+    fill("#FF0000");
+    textSize(50);
+    textFont(specialfont);
+    text("YOU HAVE WIN!", width / 2, height / 2);
+        if (playing==false){
+    MLGSONGCUT.play();
+    playing=true;
+        }
+        if (playin==false){
+            SNIPER.play();
+            playing=true;
+            
+}
+  illuminati=createSprite(width/2, height/2, 0, 0);
+    illuminati.addImage(illuminatiImage);
+    illuminati.draw();
+    
+    doritos=createSprite(width/2, height/2, 0, 0);
+    doritos.addImage(doritosImage);
+    doritos.draw();
+    
+    mlglogo=createSprite(width/2, height/2);
+    mlglogo.addImage(mlglogoImage);
+    mlglogo.draw();
+    
+    lunettes=createSprite(width/2, height/2);
+    lunettes.addImage(lunettessImage);
+    lunettes.draw();
+    
+    
+}  
