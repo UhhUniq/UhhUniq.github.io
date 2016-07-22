@@ -12,6 +12,7 @@ var isGameOver;
 var background;
 var backgroundImage;
 var score;
+var highscore;
 
 function setup() {
     createCanvas(1300, 600);
@@ -31,6 +32,7 @@ function setup() {
     enemy5.addImage(enemyImage);
     enemy6.addImage(enemyImage);
     score = 0;
+    highscore=score;
 }
 
 function draw() {
@@ -54,18 +56,18 @@ function draw() {
 
 
         if (keyDown(RIGHT_ARROW) && player.position.x < (width - 25)) {
-            player.position.x = player.position.x + 6;
+            player.position.x = player.position.x + 10;
         }
 
         if (keyDown(LEFT_ARROW) && player.position.x > 25) {
-            player.position.x = player.position.x - 6;
+            player.position.x = player.position.x - 10;
         }
         if (keyDown(DOWN_ARROW) && player.position.y < (height - 25)) {
-            player.position.y = player.position.y + 5;
+            player.position.y = player.position.y + 10;
         }
 
         if (keyDown(UP_ARROW) && player.position.y > 25) {
-            player.position.y = player.position.y - 5;
+            player.position.y = player.position.y - 10;
         }
 
         enemy.position.y = enemy.position.y + 7;
@@ -109,31 +111,50 @@ function draw() {
         }
         if (enemy.overlap(player)) {
             gameOver();
+            if (score > highscore) {
+                highscore = score;
+            }
+
         }
         if (enemy2.overlap(player)) {
             gameOver();
+            if (score > highscore) {
+                highscore = score;
+            }
         }
         if (enemy3.overlap(player)) {
             gameOver();
+            if (score > highscore) {
+                highscore = score;
+            }
         }
         if (enemy4.overlap(player)) {
             gameOver();
+            if (score > highscore) {
+                highscore = score;
+            }
         }
         if (enemy5.overlap(player)) {
             gameOver();
+            if (score > highscore) {
+                highscore = score;
+            }
         }
         if (enemy6.overlap(player)) {
             gameOver();
+            if (score > highscore) {
+                highscore = score;
+            }
         }
-         console.log(score);
-    fill(255, 0, 0);
-    textFont(specialfont);
-    textSize(40)
-    text("Score:" + score, 0, 30);
+        console.log(score);
+        fill(255, 0, 0);
+        textFont(specialfont);
+        textSize(40)
+        text("Score:" + score, 0, 30);
 
 
     }
-   
+
 
 }
 
@@ -148,12 +169,13 @@ function gameOver() {
     textFont(specialfont);
     textSize(30)
     text("Score:" + score, 70, 30);
+    text("High score:" + highscore, width / 2, height / 4);
 
 }
 
 function mouseClicked() {
     if (isGameOver) {
-        isGameOver = false; 
+        isGameOver = false;
         score = 0;
         player.position.x = width / 2;
         player.position.y = height - playerImage.height / 2;
