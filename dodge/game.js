@@ -28,6 +28,10 @@ var lunette;
 var mlglogo;
 var fog;
 var hit;
+var join;
+var faze;
+var obey;
+var cana;
 
 function setup() {
     createCanvas(1300, 600);
@@ -111,7 +115,7 @@ function draw() {
         }
         if (enemy2.position.y > height) {
             score = score + 1;
-            if (score == 10) {
+            if (score == 50) {
                  winGame();
             }
             enemy2.position.y = 0,
@@ -119,7 +123,7 @@ function draw() {
         }
         if (enemy3.position.y > height) {
             score = score + 1;
-            if (score == 10) {
+            if (score == 50) {
                  winGame();
             }
             enemy3.position.y = 0,
@@ -127,7 +131,7 @@ function draw() {
         }
         if (enemy4.position.y > height) {
             score = score + 1;
-            if (score == 10) {
+            if (score == 50) {
                  winGame();
             }
             enemy4.position.y = 0,
@@ -135,7 +139,7 @@ function draw() {
         }
         if (enemy5.position.y > height) {
             score = score + 1;
-            if (score == 10) {
+            if (score == 50) {
                  winGame();
             }
             enemy5.position.y = 0,
@@ -143,7 +147,7 @@ function draw() {
         }
         if (enemy6.position.y > height) {
             score = score + 1;
-            if (score == 10) {
+            if (score == 50) {
                  winGame();
             }
             enemy6.position.y = 0,
@@ -249,6 +253,10 @@ function preload() {
     lunetteImage = loadImage("MLGLUNET.png")
     fogImage = loadImage("FOG.png")
     hitImage = loadImage("HIT.png")
+    joinImage = loadImage("JOIN.png")
+    fazeImage = loadImage("FAZE.png")
+    obeyImage = loadImage("OBEY.png")
+    canaImage = loadImage("CANA.png")
 }
 
 function jump() {
@@ -287,7 +295,14 @@ function winGame() {
     fog.addImage(fogImage);
     hit = createSprite(width / 2, height / 2, 0, 0);
     hit.addImage(hitImage);
-    
+    join = createSprite(width / 2, height / 2, 0, 0);
+    join.addImage(joinImage);
+    faze = createSprite(width / 2, height / 2, 0, 0);
+    faze.addImage(fazeImage);
+    obey = createSprite(width / 2, height / 2, 0, 0);
+    obey.addImage(obeyImage);
+    cana = createSprite(width / 2, height / 2, 0, 0);
+    cana.addImage(canaImage);
     // Save that we won the game so draw() knows to call makemlg() instead of
     // the regular game logic
     isGameWin = true;
@@ -326,16 +341,23 @@ function makemlg() {
     // lunette.addImage(lunetteImage);
     // lunette.draw();
     
-    illuminati.position.y = illuminati.position.y + 2;
-    illuminati.position.x = illuminati.position.x + 1;
-    doritos.position.y = doritos.position.y + 1;
-    mlglogo.position.y = mlglogo.position.y + 1;
-    mlglogo.position.x = mlglogo.position.x + 1;
-    lunette.position.x = lunette.position.x + 2;
-    fog.position.x = fog.position.x + 2;
-    fog.position.y= fog.position.y + 2;
-    hit.position.y = hit.position.y + 1;
-    hit.position.x = hit.position.x + 2;
+    illuminati.position.y = illuminati.position.y + 1;
+    illuminati.position.x = illuminati.position.x + 0.5;
+    doritos.position.y = doritos.position.y + 0.5;
+    mlglogo.position.y = mlglogo.position.y + 0.5;
+    mlglogo.position.x = mlglogo.position.x + 0.5;
+    lunette.position.x = lunette.position.x + 1;
+    fog.position.x = fog.position.x + -0.5;
+    fog.position.y= fog.position.y + 1;
+    hit.position.y = hit.position.y + -0.5;
+    // hit.position.x = hit.position.x + 1;
+    join.position.y = join.position.y + -0.5;
+    join.position.x = join.position.x + 1;
+    faze.position.y = faze.position.y + 0.5;
+    faze.position.x = faze.position.x + 1;
+    obey.position.y = obey.position.y + -0.5;
+    obey.position.x = obey.position.x + -1;
+    cana.position.x = cana.position.x + -1;
     
 drawSprites()
 
