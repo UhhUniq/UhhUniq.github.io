@@ -20,12 +20,14 @@ var enemy4Image;
 var isGameWin;
 var playing = false;
 var playin = false;
-var MLGSONGCUT= new Audio("360noscoop.mp3");
-var SNIPER= new Audio("MW2.mp3")
+var MLGSONGCUT = new Audio("360noscoop.mp3");
+var SNIPER = new Audio("MW2.mp3")
 var illuminati;
 var doritos;
-var lunettes;
+var lunette;
 var mlglogo;
+var fog;
+var hit;
 
 function setup() {
     createCanvas(1300, 600);
@@ -45,8 +47,8 @@ function setup() {
     enemy5.addImage(enemyImage);
     enemy6.addImage(enemyImage);
     score = 0;
-    highscore=score;
-    gravity=0.8;
+    highscore = score;
+    gravity = 0.8;
 }
 
 function draw() {
@@ -54,9 +56,9 @@ function draw() {
     if (isGameOver) {
         gameOver();
     }
-    else if(isGameWin){
+    else if (isGameWin) {
         makemlg();
-        
+
     }
     else {
         if (enemy.overlap(player))
@@ -87,9 +89,9 @@ function draw() {
         // if (keyDown(UP_ARROW) && player.position.y > 25) {
         //     player.position.y = player.position.y - 10;
         // }
-        
+
         jump();
-        
+
         enemy.position.y = enemy.position.y + 7;
         enemy2.position.y = enemy2.position.y + 6;
         enemy3.position.y = enemy3.position.y + 9;
@@ -101,48 +103,48 @@ function draw() {
 
         if (enemy.position.y > height) {
             score = score + 1;
-            if (score==10){
-                isGameWin=true;
+            if (score == 10) {
+                 winGame();
             }
             enemy.position.y = 0,
                 enemy.position.x = Math.floor((Math.random() * 1300));
         }
         if (enemy2.position.y > height) {
             score = score + 1;
-             if (score==10){
-                isGameWin=true;
+            if (score == 10) {
+                 winGame();
             }
             enemy2.position.y = 0,
                 enemy2.position.x = Math.floor((Math.random() * 1300));
         }
         if (enemy3.position.y > height) {
             score = score + 1;
-             if (score==10){
-               isGameWin=true;
+            if (score == 10) {
+                 winGame();
             }
             enemy3.position.y = 0,
                 enemy3.position.x = Math.floor((Math.random() * 1300));
         }
         if (enemy4.position.y > height) {
             score = score + 1;
-              if (score==10){
-                isGameWin=true;
+            if (score == 10) {
+                 winGame();
             }
             enemy4.position.y = 0,
                 enemy4.position.x = Math.floor((Math.random() * 1300));
         }
         if (enemy5.position.y > height) {
             score = score + 1;
-             if (score==10){
-                isGameWin=true;
+            if (score == 10) {
+                 winGame();
             }
             enemy5.position.y = 0,
                 enemy5.position.x = Math.floor((Math.random() * 1300));
         }
         if (enemy6.position.y > height) {
             score = score + 1;
-             if (score==10){
-                isGameWin=true;
+            if (score == 10) {
+                 winGame();
             }
             enemy6.position.y = 0,
                 enemy6.position.x = Math.floor((Math.random() * 1300));
@@ -244,52 +246,97 @@ function preload() {
     illuminatiImage = loadImage("ILLU.png")
     doritosImage = loadImage("MLGDORITOS.png")
     mlglogoImage = loadImage("MLGLOGO.png")
-    mlglunettes = loadImage("MLGLUNET.png")
+    lunetteImage = loadImage("MLGLUNET.png")
+    fogImage = loadImage("FOG.png")
+    hitImage = loadImage("HIT.png")
 }
 
-function jump(){
-   if(keyIsDown(32)&&player.velocity.y===0){
-       player.velocity.y=-20;
-   }
-   if(player.velocity.y!=0){
-       player.velocity.y=player.velocity.y+gravity;
-   }
-   if(player.position.y>height-(player.height/2)){
-       player.velocity.y=0;
-       player.position.y=height-(player.height/2);
-   }
+function jump() {
+    if (keyIsDown(32) && player.velocity.y === 0) {
+        player.velocity.y = -20;
+    }
+    if (player.velocity.y != 0) {
+        player.velocity.y = player.velocity.y + gravity;
+    }
+    if (player.position.y > height - (player.height / 2)) {
+        player.velocity.y = 0;
+        player.position.y = height - (player.height / 2);
+    }
 }
+
+function winGame() {
+    // Removes game sprites so they're not drawn on the win screen
+    player.remove();
+    enemy.remove();
+    enemy2.remove();
+    enemy3.remove();
+    enemy4.remove();
+    enemy5.remove();
+    enemy6.remove();
+    
+    // Set up sprites for the makemlg() function
+    illuminati = createSprite(width / 2, height / 2, 0, 0);
+    illuminati.addImage(illuminatiImage);
+    doritos = createSprite(width / 2, height / 2, 0, 0);
+    doritos.addImage(doritosImage);
+    mlglogo = createSprite(80, 80, 0, 0);
+    mlglogo.addImage(mlglogoImage);
+    lunette = createSprite(width / 2, height / 2, 0, 0);
+    lunette.addImage(lunetteImage);
+    fog = createSprite(width / 2, height / 2, 0, 0);
+    fog.addImage(fogImage);
+    hit = createSprite(width / 2, height / 2, 0, 0);
+    hit.addImage(hitImage);
+    
+    // Save that we won the game so draw() knows to call makemlg() instead of
+    // the regular game logic
+    isGameWin = true;
+}
+
 function makemlg() {
     background(backgroundMLGImage);
     textAlign(CENTER);
     fill("#FF0000");
     textSize(50);
     textFont(specialfont);
-    text("YOU HAVE WIN!", width / 2, height / 2);
-        if (playing==false){
-    MLGSONGCUT.play();
-    playing=true;
-        }
-        if (playin==false){
-            SNIPER.play();
-            playing=true;
-            
+    text("YOU HAVE WIN!", width/2, height / 2);
+    if (playing == false) {
+        MLGSONGCUT.play();
+        playing = true;
+    }
+    if (playin == false) {
+        SNIPER.play();
+        playing = true;
+
+    }
+   
+    // illuminati.x = illuminati.x - 1;
+   
+    // illuminati.draw();
+
+    // doritos = createSprite(width / 2, height / 2, 0, 0);
+    // doritos.addImage(doritosImage);
+    // doritos.draw();
+
+    // mlglogo = createSprite(80, 80, 0, 0);
+    // mlglogo.addImage(mlglogoImage);
+    // mlglogo.draw();
+
+    // lunette = createSprite(width / 2, height / 2, 0, 0);
+    // lunette.addImage(lunetteImage);
+    // lunette.draw();
+    
+    illuminati.position.y = illuminati.position.y + 2;
+    illuminati.position.x = illuminati.position.x + 1;
+    doritos.position.y = doritos.position.y + 1;
+    mlglogo.position.y = mlglogo.position.y + 1;
+    mlglogo.position.x = mlglogo.position.x + 1;
+    lunette.position.x = lunette.position.x + 2;
+    fog.position.x = fog.position.x + 2;
+    fog.position.y= fog.position.y + 2;
+    hit.position.y = hit.position.y + 1;
+    hit.position.x = hit.position.x + 2;
+    
+drawSprites()
+
 }
-  illuminati=createSprite(width/2, height/2, 0, 0);
-    illuminati.addImage(illuminatiImage);
-    illuminati.draw();
-    
-    doritos=createSprite(width/2, height/2, 0, 0);
-    doritos.addImage(doritosImage);
-    doritos.draw();
-    
-    mlglogo=createSprite(width/2, height/2);
-    mlglogo.addImage(mlglogoImage);
-    mlglogo.draw();
-    
-    lunettes=createSprite(width/2, height/2);
-    lunettes.addImage(lunettessImage);
-    lunettes.draw();
-    
-    
-}  
