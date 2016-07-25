@@ -1,0 +1,14 @@
+body {
+    text-align: center; 
+    font-family: "Trebuchet MS";
+    background-color: purple;
+}
+h1 {
+    font-color: white;
+    font-size: 150%; 
+} 
+
+p {
+    font-color: white;
+    font-size: 50%;
+}
