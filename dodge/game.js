@@ -32,6 +32,7 @@ var join;
 var faze;
 var obey;
 var cana;
+var fogGif;
 
 function setup() {
     createCanvas(1300, 600);
@@ -53,6 +54,9 @@ function setup() {
     score = 0;
     highscore = score;
     gravity = 0.8;
+    
+    fogGif = loadGif("FOG.gif")
+    fogImage = loadImage("FOG.gif")
 }
 
 function draw() {
@@ -108,7 +112,7 @@ function draw() {
         if (enemy.position.y > height) {
             score = score + 1;
             if (score == 10) {
-                 winGame();
+                winGame();
             }
             enemy.position.y = 0,
                 enemy.position.x = Math.floor((Math.random() * 1300));
@@ -116,7 +120,7 @@ function draw() {
         if (enemy2.position.y > height) {
             score = score + 1;
             if (score == 10) {
-                 winGame();
+                winGame();
             }
             enemy2.position.y = 0,
                 enemy2.position.x = Math.floor((Math.random() * 1300));
@@ -124,7 +128,7 @@ function draw() {
         if (enemy3.position.y > height) {
             score = score + 1;
             if (score == 10) {
-                 winGame();
+                winGame();
             }
             enemy3.position.y = 0,
                 enemy3.position.x = Math.floor((Math.random() * 1300));
@@ -132,7 +136,7 @@ function draw() {
         if (enemy4.position.y > height) {
             score = score + 1;
             if (score == 10) {
-                 winGame();
+                winGame();
             }
             enemy4.position.y = 0,
                 enemy4.position.x = Math.floor((Math.random() * 1300));
@@ -140,7 +144,7 @@ function draw() {
         if (enemy5.position.y > height) {
             score = score + 1;
             if (score == 10) {
-                 winGame();
+                winGame();
             }
             enemy5.position.y = 0,
                 enemy5.position.x = Math.floor((Math.random() * 1300));
@@ -148,7 +152,7 @@ function draw() {
         if (enemy6.position.y > height) {
             score = score + 1;
             if (score == 10) {
-                 winGame();
+                winGame();
             }
             enemy6.position.y = 0,
                 enemy6.position.x = Math.floor((Math.random() * 1300));
@@ -281,32 +285,43 @@ function winGame() {
     enemy4.remove();
     enemy5.remove();
     enemy6.remove();
-    
+
     // Set up sprites for the makemlg() function
     illuminati = createSprite(width / 2, height / 2, 0, 0);
     illuminati.addImage(illuminatiImage);
+    illuminati.rotationSpeed = 2.0;
     doritos = createSprite(width / 2, height / 2, 0, 0);
     doritos.addImage(doritosImage);
+    doritos.rotationSpeed = 4.0;
     mlglogo = createSprite(80, 80, 0, 0);
     mlglogo.addImage(mlglogoImage);
+    mlglogo.rotationSpeed = 4.0;
     lunette = createSprite(width / 2, height / 2, 0, 0);
     lunette.addImage(lunetteImage);
+    lunette.rotationSpeed = 4.0;
     fog = createSprite(width / 2, height / 2, 0, 0);
-    fog.addImage(fogImage);
+    fog.addImage(fogGif);
     hit = createSprite(width / 2, height / 2, 0, 0);
     hit.addImage(hitImage);
+    hit.rotationSpeed = 4.0;
     join = createSprite(width / 2, height / 2, 0, 0);
     join.addImage(joinImage);
+    join.rotationSpeed = 4.0;
     faze = createSprite(width / 2, height / 2, 0, 0);
     faze.addImage(fazeImage);
+    faze.rotationSpeed = 4.0;
     obey = createSprite(width / 2, height / 2, 0, 0);
     obey.addImage(obeyImage);
+    obey.rotationSpeed = 4.0;
     cana = createSprite(width / 2, height / 2, 0, 0);
     cana.addImage(canaImage);
+    cana.rotationSpeed = 4.0;
     // Save that we won the game so draw() knows to call makemlg() instead of
     // the regular game logic
     isGameWin = true;
 }
+
+var cqke = 3
 
 function makemlg() {
     background(backgroundMLGImage);
@@ -314,7 +329,7 @@ function makemlg() {
     fill("#FF0000");
     textSize(50);
     textFont(specialfont);
-    text("YOU HAVE WIN!", width/2, height / 2);
+    text("YOU HAVE WIN!", width / 2, height / 2);
     if (playing == false) {
         MLGSONGCUT.play();
         playing = true;
@@ -324,9 +339,9 @@ function makemlg() {
         playing = true;
 
     }
-   
+
     // illuminati.x = illuminati.x - 1;
-   
+
     // illuminati.draw();
 
     // doritos = createSprite(width / 2, height / 2, 0, 0);
@@ -340,24 +355,57 @@ function makemlg() {
     // lunette = createSprite(width / 2, height / 2, 0, 0);
     // lunette.addImage(lunetteImage);
     // lunette.draw();
+
+    // illuminati.position.y = illuminati.position.y + 1;
+    // illuminati.position.x = illuminati.position.x + 0.5;
+    // doritos.position.y = doritos.position.y + 0.5;
+    // mlglogo.position.y = mlglogo.position.y + 0.5;
+    // mlglogo.position.x = mlglogo.position.x + 0.5;
+    // lunette.position.x = lunette.position.x + 1;
+    // fog.position.x = fog.position.x + 2;
+    // fog.position.y= fog.position.y + 1;
+    // hit.position.y = hit.position.y + 0.5;
+    // hit.position.x = hit.position.x + -1;
+    // join.position.y = join.position.y + 0.5;
+    // join.position.x = join.position.x + 1;
+    // faze.position.y = faze.position.y + -0.5;
+    // faze.position.x = faze.position.x + 2;
+    // cana.position.y = cana.position.y + -0.5;
+    // cana.position.x = cana.position.x + 1;
+    // obey.position.x = obey.position.x + -2;
+    // obey.position.y = obey.position.y + -0.5;
+    bounce(illuminati, 2, 3);
+    bounce(doritos, 3, 2);
+    bounce(mlglogo, 2, 2);
+    bounce(lunette, -2, 3);
+    bounce(cana, -1, 3);
+    bounce(obey, 1, 4);
+    bounce(faze, -2, 5);
+    bounce(join, 1, 3);
+    bounce(hit, -2, 2);
+
+    drawSprites()
+
+}
+
+function bounce(kh, x, y) {
     
-    illuminati.position.y = illuminati.position.y + 1;
-    illuminati.position.x = illuminati.position.x + 0.5;
-    doritos.position.y = doritos.position.y + 0.5;
-    mlglogo.position.y = mlglogo.position.y + 0.5;
-    mlglogo.position.x = mlglogo.position.x + 0.5;
-    lunette.position.x = lunette.position.x + 1;
-    fog.position.x = fog.position.x + 2;
-    fog.position.y= fog.position.y + 1;
-    hit.position.y = hit.position.y + 0.5;
-    hit.position.x = hit.position.x + 1;
-    join.position.y = join.position.y + 0.5;
-    join.position.x = hit.position.x + 1;
-    hit.position.y = hit.position.y + 0.5;
-    hit.position.x = hit.position.x + 1;
-    hit.position.y = hit.position.y + 0.5;
-    hit.position.x = hit.position.x + 1;
-    
-drawSprites()
+     if (kh.velocity.x == 0) {
+        kh.velocity.x = x;
+    }
+
+    if (kh.position.x > width || kh.position.x < 0) {
+        kh.velocity.x *= -1;
+
+    }
+        if (kh.velocity.y == 0) {
+        kh.velocity.y = y;
+    }
+
+    if (kh.position.y > height || kh.position.y < 0) {
+        kh.velocity.y *= -1;
+
+    }
+
 
 }
