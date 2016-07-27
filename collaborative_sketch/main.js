@@ -28,7 +28,9 @@ function draw() {
 
     for (var i = 0; i < points.length; i++) {
         var point = points[i];
-        ellipse(point.x, point.y, 5, 5);
+        noStroke();
+        fill(255, 62, 0);
+        ellipse(point.x, point.y, 10, 10);
     }
 }
 
@@ -49,7 +51,7 @@ function drawPointIfMousePressed() {
 $("#saveDrawing").on("click", saveDrawing);
 
 function saveDrawing() {
-    saveCanvas;
+    saveCanvas();
 }
 $("#clearDrawing").on("click", clearDrawing);
 
