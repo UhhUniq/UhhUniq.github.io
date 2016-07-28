@@ -12,7 +12,7 @@ var points = [];
 
 
 function setup() {
-    var canvas = createCanvas(400, 400);
+    var canvas = createCanvas(800, 500);
 
     background(255);
     fill(0);

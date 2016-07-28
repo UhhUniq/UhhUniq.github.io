@@ -1,0 +1,39 @@
+body {
+    color: #000080;
+    /*background-color: yellow;*/
+    background-image: url(ZEN2.jpg);
+    background-size: 100%;
+    text-align: center;
+    font-size: 60px;
+    font-family: Trebuchet MS;
+}
+
+.timeClass {
+  font-family:Trebuchet MS;
+  font-weight:normal;
+  font-size:60px;
+}
+
+#btn {
+    padding: 40px 100px 40px 70px;
+    font: Bold 30px Trebuchet MS;
+    background: #FFD700;
+    color: #fff;
+    width: 90px;
+    border-radius: 2px;
+    border: none;
+    margin-right: 200px;
+}
+
+#btn2 {
+    padding: 40px 80px 40px 70px;
+    font: Bold 30px Trebuchet MS;
+    background: #8B0000;
+    color: #fff;
+    width: 90px;
+    border-radius: 2px;
+    border: none;
+    margin-right: 200px;
+
+}
+
