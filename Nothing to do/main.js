@@ -1,6 +1,8 @@
 var sec = 01; // set the seconds
 var min = 02; // set the minutes
 
+
+
 function countDown() {
     sec--;
     if (sec == -01) {
@@ -37,31 +39,36 @@ function countDown() {
 
         window.clearTimeout(SD);
 
-    }
-}
+        function reload() {
+            location.reload();
+            console.log("hi");
+        }
+        $("#btn2").on("click", reload);
 
-function addLoadEvent(func) {
-    var oldonload = window.onload;
-    if (typeof window.onload != 'function') {
-        window.onload = func;
-    }
-    else {
-        window.onload = function() {
-            if (oldonload) {
-                oldonload();
-            }
-            func();
+        function rage() {
+            window.location = 'https://uhhuniq.github.io/dodge/';
+        }
+
+        $("#btn").on("click", rage );
+
         }
     }
-}
 
-addLoadEvent(function() {
-    countDown();
-});
+    function addLoadEvent(func) {
+        var oldonload = window.onload;
+        if (typeof window.onload != 'function') {
+            window.onload = func;
+        }
+        else {
+            window.onload = function() {
+                if (oldonload) {
+                    oldonload();
+                }
+                func();
+            }
+        }
+    }
 
-$("#btn2").on("click", reload);
-
-function reload() {
-    // location.reload();
-console.log("hi");
-}
+    addLoadEvent(function() {
+        countDown();
+    });
